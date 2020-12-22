@@ -1,6 +1,7 @@
 from dataset import getDatasets, getLoaders
 from model import getModel, loadModelWithWeights
 from train import train_for_epochs
+from eval import getAPForAll
 
 from PIL import Image
 import torch
@@ -52,13 +53,14 @@ print('Using device:', device)
 train_dataset, val_dataset, test_dataset = getDatasets(data_folder)
 
 # Loading model
+print('Loading Model...')
 model = loadModelWithWeights(weights_path)
 model = model.to(device)
 
 model.eval()
 with torch.no_grad():
     image = train_dataset.__getitem__(0)[0].to(device)
-    bboxes = model([image])
-    # TODO : Show IoU
-    # TODO calculate mAP
-    draw_results(image.to('cpu'), bboxes)
+    pred = model([image])
+    draw_results(image.to('cpu'), pred)
+    AP = getAPForAll(pred[0], train_dataset.__getitem__(0)[1])
+    print(AP)
