@@ -8,6 +8,14 @@ import matplotlib.pyplot as plt
 from matplotlib import patches
 import numpy as np
 
+# Temporary
+import cv2
+import torchvision.transforms as T
+
+# Set class  boxcolors
+classes_color = {'with_mask':[0, 255, 0], 'without_mask':[0 ,0, 255], 'mask_weared_incorrect':[255, 165, 0]}
+classes_index = {1:'with_mask', 2:'without_mask', 3:'mask_weared_incorrect'}
+
 # Show image with bounding boxes that have a score > 0.8
 def draw_results(image, lables):
     # Set class  boxcolors
@@ -54,5 +62,3 @@ with torch.no_grad():
     # TODO : Show IoU
     # TODO calculate mAP
     draw_results(image.to('cpu'), bboxes)
-
-
