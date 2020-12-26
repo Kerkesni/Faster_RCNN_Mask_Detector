@@ -8,5 +8,5 @@ A Faster R-CNN model, pre-trained on the COCO dataset
 ## Dataset Used for training
 - [Face Mask Detection](https://www.kaggle.com/andrewmvd/face-mask-detection)
 
-## Results after only 20 epochs
+## Results after 20 epochs
 ![Detection Results](./results/output.gif)
