@@ -83,7 +83,7 @@ def getDatasets(data_folder, train_split_percentage=0.5, val_split_percentage=0.
     return train_dataset, val_dataset, test_dataset
 
 # Returns the training, validation and test loaders
-def getLoaders(train_dataset, val_dataset, batch_size=2):
+def getLoaders(train_dataset, val_dataset, test_dataset, batch_size=2):
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, collate_fn=collate_fn)
     val_loader = torch.utils.data.DataLoader(dataset=val_dataset, batch_size=batch_size, shuffle=False, num_workers=4, collate_fn=collate_fn)
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=collate_fn)

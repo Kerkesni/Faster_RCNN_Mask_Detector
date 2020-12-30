@@ -52,6 +52,9 @@ print('Using device:', device)
 # Loading Datasets
 train_dataset, val_dataset, test_dataset = getDatasets(data_folder)
 
+# Getting Loaders
+train_loader, val_loader, test_loader = getLoaders(train_dataset, val_dataset, test_dataset)
+
 # Loading model
 print('Loading Model...')
 model = loadModelWithWeights(weights_path)
@@ -59,8 +62,7 @@ model = model.to(device)
 
 model.eval()
 with torch.no_grad():
-    image = train_dataset.__getitem__(0)[0].to(device)
-    pred = model([image])
-    draw_results(image.to('cpu'), pred)
-    AP = getAPForAll(pred[0], train_dataset.__getitem__(0)[1])
-    print(AP)
+    for img, label in test_loader:
+        image = img.to(device)
+        pred = model([image])
+        draw_results(image.to('cpu'), pred)
