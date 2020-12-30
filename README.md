@@ -11,6 +11,7 @@ A Faster R-CNN model, pre-trained on the COCO dataset
 ## Results after 20 epochs
 ![Detection Results](./results/output.gif)
 
+### Precision :
 | Classes | mAP |
 | ----------- | ----------- |
 | With_Mask | 0.87 |
